@@ -152,6 +152,13 @@ class BloggerBackendForm {
     $postedAt->setAttribute('data-blogger-time-form', true);
     $postedAt->setAttribute('type', 'datetime-local');
 
+    $status = new rex_form_element('input');
+    $status->setLabel($addon->i18n('forms_status'));
+    $status->setAttribute('name', $this->name.'[meta][status]');
+    $status->setAttribute('class', 'form-check-input');
+    $status->setAttribute('value', '1');
+    $status->setAttribute('type', 'checkbox');
+
     if ($this->pid) {
       $meta = BloggerApi::getMeta($this->pid);
 
@@ -161,6 +168,10 @@ class BloggerBackendForm {
       }
       $postedBy->setValue($meta['postedBy']);
       $postedAt->setValue(str_replace(' ', 'T', $meta['postedAt']));
+      if ($meta['status'] == 1) {
+        $status->setAttribute('checked', 'checked');
+      }
+      
     } else {
       $date = new DateTime();
       $postedAt->setValue(str_replace(' ', 'T', $date->format('Y-m-d H:i:s')));
@@ -171,6 +182,7 @@ class BloggerBackendForm {
     $content .= $tags->get();
     $content .= $postedBy->get();
     $content .= $postedAt->get();
+    $content .= $status->get();
 
     return '<section>'.$content.'</section><hr />';
   }

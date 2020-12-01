@@ -29,6 +29,7 @@ blogger_forms_preview = Preview
 blogger_forms_gallery = Galerie
 blogger_forms_name = Name
 blogger_forms_tag = Tag
+blogger_forms_status = Status
 
 blogger_config_texteditor_class = Texteditor Klasse
 blogger_config_show_gallery = Galerie anzeigen

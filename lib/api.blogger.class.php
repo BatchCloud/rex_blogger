@@ -86,6 +86,7 @@ class BloggerApi {
     $meta['tags'] = explode('|', $sql->getValue('tags'));
     $meta['postedBy'] = $sql->getValue('postedBy');
     $meta['postedAt'] = $sql->getValue('postedAt');
+    $meta['status'] = $sql->getValue('status');
 
     return $meta;
   }
@@ -147,6 +148,12 @@ class BloggerApi {
 
     if ($data['meta']['postedat']) {
       $metaSet['postedAt'] = $data['meta']['postedat'];
+    }
+
+    if ($data['meta']['status']) {
+      $metaSet['status'] = '1';
+    } else {
+      $metaSet['status'] = '0';
     }
 
     $table = rex::getTable('blogger_entries');

@@ -57,6 +57,12 @@ class BloggerApi {
     $set['tags'] = $data['tags'] ? implode('|', $data['tags']) : '';
     $set['postedBy'] = $data['postedby'];
     $set['postedAt'] = str_replace('T', ' ', $data['postedat']);
+    
+    if ($data['status']) {
+      $set['status'] = '1';
+    } else {
+      $set['status'] = '0';
+    }
 
     $table = rex::getTable('blogger_entries');
 
